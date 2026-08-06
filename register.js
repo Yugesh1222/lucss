@@ -5,7 +5,7 @@
  * (see Code.gs + README.md for deployment steps).
  * -----------------------------------------------------------------------
  */
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8-Rc0JxZ45oF6nyM4HLiVDDuDlmNgf7Jlai2Y2FhM_CNhNIv3k8qi_r0hHAxzCz2f/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2vE5-7lpj_Jf4fuIXwmrLka0plsTKBTabgyVXLfSb7YKoDbt3wX6FBDlcBu0Tol7M/exec";
 
 const MAX_TEAMMATES = 5; // supports team sizes up to 6 (leader + 5 teammates)
 
