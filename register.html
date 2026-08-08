@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — Connexion 26</title>
+<meta name="description" content="Complete your registration for a Connexion 26 event.">
+<meta name="theme-color" content="#0B0B14">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { fontFamily: {
+    display: ['Space Grotesk','sans-serif'], body: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace']
+  }}}}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+  html, body { max-width: 100vw; overflow-x: hidden; }
+</style>
+</head>
+<body class="font-body static-bg-frame">
+
+<div id="loader"><div class="brand-loader"><div class="brand-loader__ring"><img src="loader-logo.jpg" alt="Connexion 26" class="brand-loader__mark"></div></div></div>
+
+<header class="navbar scrolled">
+  <div class="max-w-4xl mx-auto px-6 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.png.jpeg" alt="Connexion 26 logo" class="w-9 h-9 rounded-full object-cover">
+      <span class="font-display font-bold text-lg">Connexion <span class="text-cyan-400">26</span></span>
+    </a>
+    <a href="index.html" class="btn btn-ghost !py-2.5 !px-5 !text-xs"><i class="fa-solid fa-arrow-left"></i> Back to events</a>
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-6 pt-32 pb-24">
+
+  <!-- Selected event summary -->
+  <div id="eventSummary" class="glass rounded-3xl p-6 mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-5" data-aos="fade-up">
+    <div class="skeleton w-16 h-16 rounded-2xl shrink-0" id="evThumbWrap"></div>
+    <div class="flex-1">
+      <span class="badge-band mb-2" id="evBadge">Loading…</span>
+      <h1 class="font-display text-2xl font-bold" id="evName">Loading event…</h1>
+      <p id="evTagline" class="text-sm text-[var(--text-dim)] mt-2">Loading tagline…</p>
+      <p id="evDescription" class="text-sm text-[var(--text-dim)] mt-4 max-w-2xl">Loading description…</p>
+      <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-[var(--text-dim)] font-mono mt-4" id="evMeta"></div>
+    </div>
+  </div>
+
+  <!-- Step indicator -->
+  <div class="flex items-center gap-2 mb-10 max-w-md mx-auto" id="stepIndicator">
+    <div class="step-dot active" data-step="1">1</div>
+    <div class="step-line" data-line="1"></div>
+    <div class="step-dot" data-step="2">2</div>
+    <div class="step-line" data-line="2"></div>
+    <div class="step-dot" data-step="3">3</div>
+  </div>
+
+  <form id="regForm" class="glass rounded-3xl p-6 sm:p-10" novalidate>
+    <input type="hidden" id="eventId" name="eventId">
+
+    <!-- STEP 1: Personal details -->
+    <section class="form-step" data-step="1">
+      <h2 class="font-display text-xl font-bold mb-1">Your details</h2>
+      <p class="text-sm text-[var(--text-dim)] mb-7">Tell us who's registering.</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="field sm:col-span-2">
+          <label>Full name <span class="req">*</span></label>
+          <input type="text" name="fullName" required placeholder="As per college ID">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label>Roll number <span class="req">*</span></label>
+          <input type="text" name="rollNumber" required placeholder="e.g. 21CS045">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label>Mobile number <span class="req">*</span></label>
+          <input type="tel" name="mobile" required placeholder="10-digit mobile number" maxlength="10">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label>Class <span class="req">*</span></label>
+          <input type="text" name="className" required placeholder="e.g. II BCA">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label>Section <span class="req">*</span></label>
+          <input type="text" name="section" required placeholder="e.g. A">
+          <div class="field-error"></div>
+        </div>
+        <div class="field sm:col-span-2">
+          <label>Email address <span class="req">*</span></label>
+          <input type="email" name="email" required placeholder="you@email.com">
+          <div class="field-error"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: Team details (group events only) -->
+    <section class="form-step hidden" data-step="2">
+      <h2 class="font-display text-xl font-bold mb-1">Team details</h2>
+      <p class="text-sm text-[var(--text-dim)] mb-7" id="teamStepSubtitle">Who's on your team.</p>
+
+      <div id="soloNotice" class="hidden rounded-2xl p-5 text-sm flex items-start gap-3" style="background:var(--bg-elev); border:1px solid var(--line)">
+        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+        <span class="text-[var(--text-dim)]">This is a solo event — no teammate details needed. Continue to the next step.</span>
+      </div>
+
+      <div id="teamFields" class="hidden">
+        <div class="field mb-6 max-w-xs">
+          <label>Number of participants <span class="req">*</span></label>
+          <select name="participants" id="participantsSelect" required></select>
+          <div class="field-error"></div>
+        </div>
+        <div id="teammatesContainer" class="space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- STEP 3: Review + upload + submit -->
+    <section class="form-step hidden" data-step="3">
+      <h2 class="font-display text-xl font-bold mb-1">Review &amp; confirm</h2>
+      <p class="text-sm text-[var(--text-dim)] mb-7">Double check the details, then submit.</p>
+
+      <div class="field mb-6">
+        <label>Event <span class="text-[var(--text-faint)] font-normal">(auto-filled, locked)</span></label>
+        <input type="text" id="eventDisplay" disabled>
+      </div>
+
+      <div class="field mb-6">
+        <label>ID card photo <span class="req">*</span></label>
+        <div class="upload-drop" id="dropZone">
+          <input type="file" id="idUpload" name="idUpload" accept="image/*" required class="hidden">
+          <i class="fa-solid fa-cloud-arrow-up text-2xl mb-2 text-[var(--text-dim)]"></i>
+          <div class="text-sm text-[var(--text-dim)]" id="dropLabel">Click to upload, or drag your ID card photo here (image, max 5MB)</div>
+        </div>
+        <div class="field-error"></div>
+      </div>
+
+      <div id="reviewCard" class="rounded-2xl p-5 mb-6 text-sm space-y-2" style="background:var(--bg-elev); border:1px solid var(--line)"></div>
+
+      <label class="flex items-start gap-3 mb-8 cursor-pointer">
+        <input type="checkbox" name="terms" id="termsCheck" required class="mt-1 w-4 h-4 accent-violet-500">
+        <span class="text-sm text-[var(--text-dim)]">I agree to the <a href="#" class="underline text-[var(--text)]">terms &amp; conditions</a> and confirm the details above are accurate. <span class="req">*</span></span>
+      </label>
+      <div class="field-error mb-4"></div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-between mt-8 pt-6" style="border-top:1px solid var(--line)">
+      <button type="button" id="prevBtn" class="btn btn-ghost hidden"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      <div class="flex-1"></div>
+      <button type="button" id="nextBtn" class="btn btn-primary">Continue <i class="fa-solid fa-arrow-right text-xs"></i></button>
+      <button type="submit" id="submitBtn" class="btn btn-primary hidden"><span id="submitLabel">Submit Registration</span></button>
+    </div>
+  </form>
+</main>
+
+<div id="toast" class="fixed bottom-6 right-6 z-[3000] translate-y-24 opacity-0 transition-all duration-500"></div>
+
+<div id="submitOverlay" class="brand-overlay hidden">
+  <div class="brand-loader">
+    <div class="brand-loader__ring"><img src="loader-logo.jpg" alt="Submitting" class="brand-loader__mark"></div>
+    <div class="brand-loader__label">Submitting your registration…</div>
+    <div class="brand-loader__sub">This can take a few seconds while we upload your ID card photo. Please don't close or refresh this page.</div>
+  </div>
+</div>
+
+<script src="events.js"></script>
+<script src="register.js"></script>
+</body>
+</html>
