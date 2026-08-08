@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion 26 — Conducted by Lucafama | Sept 17–19</title>
+<meta name="description" content="Connexion 26 conducted by Lucafama — 17 events across stage, visual, mind, arena and social bands. Register now.">
+<meta name="theme-color" content="#0B0B14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          bg: '#0B0B14', ink: '#F5F5F7',
+          violet:'#7C3AED', blue:'#2563EB', cyan:'#06B6D4', green:'#10B981', amber:'#F59E0B', red:'#EF4444', pink:'#EC4899'
+        },
+        fontFamily: {
+          display: ['Space Grotesk','sans-serif'],
+          body: ['Inter','sans-serif'],
+          mono: ['JetBrains Mono','monospace']
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Mobile overflow guard: decorative hero elements (beam glow, float
+     cards, prism divider) can render wider than the viewport on small
+     screens and push the whole page into a horizontal scroll, cutting
+     off text on the left. Clip at the html/body level so nothing can
+     force horizontal scroll, without touching the desktop layout. */
+  html, body { max-width: 100vw; overflow-x: hidden; }
+</style>
+</head>
+<body class="font-body">
+<canvas id="bgAnimCanvas"></canvas>
+<div class="bg-anim-overlay"></div>
+<div id="loader"><div class="brand-loader"><div class="brand-loader__ring"><img src="loader-logo.jpg" alt="Connexion 26" class="brand-loader__mark"></div></div></div>
+<header class="navbar" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3">
+      <img src="logo.png.jpeg" alt="Connexion 26 logo" class="w-10 h-10 rounded-full object-cover">
+      <span class="font-display font-bold text-lg tracking-tight">Connexion <span class="text-cyan-400">26</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#events" class="nav-link">Events</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark / light mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <a href="#events" class="btn btn-primary hidden sm:inline-flex !py-3 !px-6 !text-xs">Register Now</a>
+      <button id="menuBtn" class="md:hidden theme-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden glass mx-4 mt-3 rounded-2xl p-5 flex flex-col gap-4">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#events" class="nav-link">Events</a>
+    <a href="#gallery" class="nav-link">Gallery</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#events" class="btn btn-primary w-full">Register Now</a>
+  </div>
+</header>
+<section id="home" class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+  <div class="hero-beam"><div class="hero-beam__fan"></div><div class="hero-beam__ray"></div></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+    <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-14 items-center">
+      <div>
+        <div class="section-eyebrow mb-6" data-aos="fade-up">Lucafama presents</div>
+        <h1 class="font-display font-bold leading-[0.95] text-[clamp(2.6rem,7vw,5.5rem)]" data-aos="fade-up" data-aos-delay="80">
+          Connexion <span class="align-super text-2xl md:text-4xl text-cyan-400">26</span>
+        </h1>
+        <p class="mt-5 font-display text-xl md:text-2xl text-transparent bg-clip-text" style="background-image:var(--beam); background-clip:text; -webkit-background-clip:text;" data-aos="fade-up" data-aos-delay="140">
+          Seven colors. One stage.
+        </p>
+        <p class="mt-6 max-w-lg text-[var(--text-dim)] text-base leading-relaxed" data-aos="fade-up" data-aos-delay="180">
+          Three days, seventeen events, one campus split wide open into every color of performance — dance, film, code, controllers and everything between. September 17–19, conducted by Lucafama.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="220">
+          <a href="#events" class="btn btn-primary"><i class="fa-solid fa-ticket"></i> Browse Events</a>
+          <a href="#about" class="btn btn-ghost">What is Connexion 26?</a>
+        </div>
+        <div class="mt-12 flex gap-3" id="countdown" data-aos="fade-up" data-aos-delay="260">
+          <div class="countdown-cell glass"><span class="countdown-num" id="cd-days">00</span><span class="countdown-label">Days</span></div>
+          <div class="countdown-cell glass"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-label">Hours</span></div>
+          <div class="countdown-cell glass"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-label">Mins</span></div>
+          <div class="countdown-cell glass"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">Secs</span></div>
+        </div>
+      </div>
+      <div class="relative hidden lg:block" data-aos="fade-left" data-aos-delay="200">
+        <div class="glass float-card rounded-3xl p-6 absolute -top-6 -left-6 w-48 z-20">
+          <i class="fa-solid fa-users text-cyan-400 text-xl mb-2"></i>
+          <div class="font-display text-2xl font-bold">4,000+</div>
+          <div class="text-xs text-[var(--text-dim)]">Students expected</div>
+        </div>
+        <div class="glass float-card delay-2 rounded-3xl p-6 absolute -bottom-8 -right-4 w-48 z-20">
+          <i class="fa-solid fa-trophy text-amber-400 text-xl mb-2"></i>
+          <div class="font-display text-2xl font-bold">₹1.6L+</div>
+          <div class="text-xs text-[var(--text-dim)]">In prizes</div>
+        </div>
+        <div class="rounded-[2rem] overflow-hidden border border-[var(--line)] float-card delay-1">
+          <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=900&auto=format&fit=crop" alt="Crowd at a college festival concert" class="w-full h-[520px] object-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="prism-divider absolute bottom-0 left-0"></div>
+</section>
+<section id="about" class="py-28 px-6">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <div data-aos="fade-right">
+      <div class="section-eyebrow mb-5">About the fest</div>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Every band of Connexion 26 gets its own stage.</h2>
+      <p class="text-[var(--text-dim)] leading-relaxed mb-5">Connexion 26 is Lucafama's signature cultural forum — three days where the whole campus turns into five color-coded zones, each hosting a different kind of talent. No single genre owns the fest; performers, coders, filmmakers, and gamers all get equal light.</p>
+      <p class="text-[var(--text-dim)] leading-relaxed mb-8">Open to students from every college. Solo and team formats across all seventeen events, judged by faculty and industry guests, with same-day results for most categories.</p>
+      <div class="grid grid-cols-3 gap-6">
+        <div><div class="font-display text-3xl font-bold text-violet-400">17</div><div class="text-xs text-[var(--text-dim)] mt-1">Events</div></div>
+        <div><div class="font-display text-3xl font-bold text-cyan-400">3</div><div class="text-xs text-[var(--text-dim)] mt-1">Days</div></div>
+        <div><div class="font-display text-3xl font-bold text-amber-400">40+</div><div class="text-xs text-[var(--text-dim)] mt-1">Colleges last year</div></div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+      <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=600&auto=format&fit=crop" class="rounded-2xl h-64 object-cover w-full mt-8" alt="Students performing on stage at night">
+      <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=600&auto=format&fit=crop" class="rounded-2xl h-64 object-cover w-full" alt="Crowd cheering with hands raised">
+    </div>
+  </div>
+</section>
+<section class="py-16 px-6 border-y border-[var(--line)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid sm:grid-cols-3 lg:grid-cols-5 gap-4" id="categoryStrip"></div>
+  </div>
+</section>
+<section id="events" class="py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-wrap justify-between items-end gap-6 mb-12" data-aos="fade-up">
+      <div>
+        <div class="section-eyebrow mb-4">Featured events</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold">Pick your color.</h2>
+      </div>
+      <div class="flex flex-wrap gap-2" id="filterBar"></div>
+    </div>
+    <div id="eventsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+<section class="py-20 border-y border-[var(--line)] overflow-hidden">
+  <div class="text-center mb-10"><div class="section-eyebrow justify-center">Powered by</div></div>
+  <div class="marquee scrollbar-none">
+    <div class="flex items-center gap-16 shrink-0">
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">NIMBUS FOODS</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">ALTITUDE WEAR</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">ORBIT TELECOM</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">VERSE STUDIOS</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">CASCADE BANK</span>
+    </div>
+    <div class="flex items-center gap-16 shrink-0" aria-hidden="true">
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">NIMBUS FOODS</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">ALTITUDE WEAR</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">ORBIT TELECOM</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">VERSE STUDIOS</span>
+      <span class="font-display text-2xl font-bold text-[var(--text-faint)]">CASCADE BANK</span>
+    </div>
+  </div>
+</section>
+<section id="gallery" class="py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-eyebrow mb-4" data-aos="fade-up">Last year</div>
+    <h2 class="font-display text-4xl md:text-5xl font-bold mb-12" data-aos="fade-up">Recent highlights from Connexion.</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[180px]">
+      <div class="gallery-item row-span-2 col-span-2" data-aos="zoom-in"><img data-src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800&auto=format&fit=crop" class="lazy" alt="Band performing under stage lights"></div>
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="60"><img data-src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=500&auto=format&fit=crop" class="lazy" alt="Crowd dancing at night event"></div>
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="120"><img data-src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=500&auto=format&fit=crop" class="lazy" alt="DJ performing at festival"></div>
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="180"><img data-src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=500&auto=format&fit=crop" class="lazy" alt="Students at a college gaming tournament"></div>
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="240"><img data-src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?q=80&w=500&auto=format&fit=crop" class="lazy" alt="Fashion show runway performer"></div>
+      <div class="gallery-item col-span-2" data-aos="zoom-in" data-aos-delay="300"><img data-src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=800&auto=format&fit=crop" class="lazy" alt="Wide shot of festival crowd at sunset"></div>
+    </div>
+  </div>
+</section>
+<section id="faq" class="py-28 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="section-eyebrow mb-4" data-aos="fade-up">Good to know</div>
+    <h2 class="font-display text-4xl md:text-5xl font-bold mb-10" data-aos="fade-up">Frequently asked.</h2>
+    <div id="faqList"></div>
+  </div>
+</section>
+<section id="contact" class="py-28 px-6 border-t border-[var(--line)]">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+    <div data-aos="fade-right">
+      <div class="section-eyebrow mb-4">Get in touch</div>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Questions about Connexion 26?</h2>
+      <p class="text-[var(--text-dim)] mb-8 leading-relaxed">Reach the organizing committee directly, or find us at the info desk in the main quad during fest week.</p>
+      <div class="space-y-5">
+        <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full glass flex items-center justify-center text-cyan-400"><i class="fa-solid fa-envelope"></i></div><span>fest@riverbendcollege.edu</span></div>
+        <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full glass flex items-center justify-center text-violet-400"><i class="fa-solid fa-phone"></i></div><span>+91 98765 43210</span></div>
+        <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full glass flex items-center justify-center text-amber-400"><i class="fa-solid fa-location-dot"></i></div><span>Riverbend College, Main Quad, Sector 12</span></div>
+      </div>
+    </div>
+    <form id="contactForm" class="glass rounded-3xl p-8 space-y-5" data-aos="fade-left">
+      <div class="field"><label>Your name</label><input type="text" required placeholder="Full name"></div>
+      <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+      <div class="field"><label>Message</label><textarea rows="4" required placeholder="How can we help?"></textarea></div>
+      <button type="submit" class="btn btn-primary w-full">Send Message</button>
+    </form>
+  </div>
+</section>
+<footer class="border-t border-[var(--line)] pt-16 pb-8 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 mb-14">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-8 rounded-full" style="background:var(--beam)"></div>
+        <span class="font-display font-bold">Connexion 26</span>
+      </div>
+      <p class="text-sm text-[var(--text-dim)] leading-relaxed">Connexion 26 by Lucafama. Sept 17–19, 2026.</p>
+    </div>
+    <div>
+      <div class="font-display text-sm font-semibold mb-4">Explore</div>
+      <div class="flex flex-col gap-3 text-sm text-[var(--text-dim)]">
+        <a href="#about" class="hover:text-[var(--text)]">About</a>
+        <a href="#events" class="hover:text-[var(--text)]">Events</a>
+        <a href="#gallery" class="hover:text-[var(--text)]">Gallery</a>
+        <a href="#faq" class="hover:text-[var(--text)]">FAQ</a>
+      </div>
+    </div>
+    <div>
+      <div class="font-display text-sm font-semibold mb-4">Legal</div>
+      <div class="flex flex-col gap-3 text-sm text-[var(--text-dim)]">
+        <a href="#" class="hover:text-[var(--text)]">Terms &amp; Conditions</a>
+        <a href="#" class="hover:text-[var(--text)]">Refund Policy</a>
+        <a href="#" class="hover:text-[var(--text)]">Code of Conduct</a>
+      </div>
+    </div>
+    <div>
+      <div class="font-display text-sm font-semibold mb-4">Follow</div>
+      <div class="flex gap-3">
+        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X / Twitter" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-red-400 transition"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-blue-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="prism-divider mb-6"></div>
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between gap-4 text-xs text-[var(--text-faint)]">
+    <span>© 2026 Riverbend College Cultural Committee. All rights reserved.</span>
+    <span>Built by the Connexion 26 web team</span>
+  </div>
+</footer>
+<div id="toast" class="fixed bottom-6 right-6 z-[3000] translate-y-24 opacity-0 transition-all duration-500"></div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<div id="rulesModal" class="modal-backdrop hidden" aria-hidden="true">
+  <div class="modal-box glass max-w-lg w-full p-8 relative">
+    <button type="button" class="rules-close absolute top-4 right-4 text-[var(--text-dim)] hover:text-white" aria-label="Close rules dialog"><i class="fa-solid fa-xmark"></i></button>
+    <h2 id="rulesTitle" class="font-display text-2xl font-bold mb-4">Event Rules</h2>
+    <ul id="rulesList" class="space-y-3 text-[var(--text-dim)] list-disc pl-5"></ul>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="events.js"></script>
+<script src="script.js"></script>
+<script src="bg-scroll.js"></script>
+</body>
+</html>
